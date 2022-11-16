@@ -1,7 +1,5 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import Materialize from 'materialize-css'
-
+  import Materialize from 'materialize-css'
 </script>
 
 <template>

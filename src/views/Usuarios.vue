@@ -1,9 +1,40 @@
 <template>
-    <h1>Page user</h1>
+    <div class="container">
+        <h4>Clubes</h4>
+        <BotaoCriar :nomePagina="'usuarios'"/>
+        <Tabela  :pagina="'detalhesUsuario'" :itens="usuarios"/>
+    </div>
 </template>
 
 <script>
+
+import BotaoCriar from '../components/BotaoCriar.vue'
+import Tabela from '../components/Tabela.vue'
+
 export default {
-    name: 'Usuarios'
+    name: 'Usuarios',
+    
+    components: {
+        BotaoCriar,
+        Tabela
+    },
+
+    data() {
+        return {
+            usuarios: Array
+        }
+    },
+
+    methods: {
+        async buscarUsuarios() {
+            this.api.get('api/user').then(usuarios => {
+                this.usuarios = usuarios.data
+            })
+        },
+    },
+
+    mounted() {
+        this.buscarUsuarios()
+    }
 }
 </script>
