@@ -1,12 +1,12 @@
 <template>
-    <li class="collection-item" id="{id}">
+    <li class="collection-item coluna" id="{id}">
         <div>{{nome}}
-            <a href="#!" class="secondary-content"> 
-                <router-link :to="`${pagina}?id=${id}`" :idItem="id"> 
-                    <i class="material-icons">arrow_forward</i>
-                </router-link>
-            </a>
         </div>
+        <router-link :to="`${pagina}?id=${id}`" :idItem="id"> 
+            <button class="waves-effect waves-light blue btn">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </router-link>
     </li>
 </template>
 
@@ -22,3 +22,9 @@
     }
 
 </script>
+<style scoped>
+    .coluna {
+        display: flex;
+        justify-content: space-between;
+    }
+</style>
