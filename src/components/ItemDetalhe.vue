@@ -38,7 +38,9 @@ export default {
         font-size: 14pt;
         justify-content: space-between;
     }
-    
+    .titulo {
+        margin-right: 20px;
+    }
     .header-item {
         display: flex;
     }
