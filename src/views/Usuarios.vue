@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <h4>Clubes</h4>
-        <BotaoCriar :nomePagina="'usuarios'"/>
+        <BotaoCriar :nomePagina="'adicionarUsuario'"/>
         <Tabela  :pagina="'detalhesUsuario'" :itens="usuarios"/>
     </div>
 </template>

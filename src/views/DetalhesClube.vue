@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <MenuDetalhes :pagina="'club'"/>
+        <MenuDetalhes :pagina="'club'" :paginaAtras="'clubes'" />
         <div class="container datalhes">
             <ItemDetalhe :titulo="'Nome'" :dados="nome" :icone="'done'"/>
             <ItemDetalhe :titulo="'Criação'" :dados="criado_em" :icone="'date_range'"/>

@@ -5,6 +5,9 @@ import Usuarios from '../views/Usuarios.vue'
 import Clubes from '../views/Clubes.vue'
 import DetalhesClube from '../views/DetalhesClube.vue'
 import DetalhesUsuario from '../views/DetalhesUsuario.vue'
+import AdicionarUsuario from '../views/AdicionarUsuario.vue'
+import AdicionarClube from '../views/AdicionarClube.vue'
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -37,6 +40,16 @@ const router = createRouter({
       path: '/sair',
       name: 'sair',
       component: Clubes
+    },
+    {
+      path: '/adicionarUsuario',
+      name: 'adicionarUsuario',
+      component: AdicionarUsuario
+    },
+    {
+      path: '/adicionarClube',
+      name: 'adicionarClube',
+      component: AdicionarClube
     },
   ]
 })
