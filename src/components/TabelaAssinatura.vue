@@ -1,7 +1,7 @@
 <template>
     <ul class="collapsible acordion">
         <li>
-            <div class="collapsible-header"><i class="material-icons">assignment_ind</i>Assinatura</div>
+            <div class="collapsible-header"><i class="material-icons">assignment_ind</i>{{titulo}}</div>
             <div class="collapsible-body">
                 <div>
                     <span>
@@ -38,7 +38,8 @@
         },
 
         props: {
-            assinatura: ''
+            assinatura: '',
+            titulo: ''
         },
 
         methods: {

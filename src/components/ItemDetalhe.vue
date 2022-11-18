@@ -1,7 +1,7 @@
 <template>
     <span class="item">
         <span class="header-item">
-            <i class="material-icons">{{ icone }}</i>
+            <i class="material-icons icone" >{{ icone }}</i>
             <span class="titulo"><strong>{{ titulo }}</strong></span> 
         </span>
         <span class="dados">
@@ -35,7 +35,7 @@ export default {
         display: flex;
         width: 100%;
         align-items: center;
-        font-size: 14pt;
+        font-size: 11pt;
         justify-content: space-between;
     }
     .titulo {
@@ -43,5 +43,9 @@ export default {
     }
     .header-item {
         display: flex;
+    }
+    .icone{
+        
+        margin-right: 1rem;
     }
 </style>

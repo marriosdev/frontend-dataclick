@@ -6,7 +6,7 @@
             <ItemDetalhe :titulo="'Criação'" :dados="criado_em" :icone="'date_range'"/>
             <ItemDetalhe :titulo="'Assinaturas'" :dados="quantidade_assinaturas" :icone="'assignment_ind'"/>
             <div v-for="assinatura in assinaturas" :key="assinatura">
-                <TabelaAssinatura :assinatura="assinatura"/>
+                <TabelaAssinatura :assinatura="assinatura" :titulo="assinatura.clubname"/>
             </div>
         </div>
     </div>

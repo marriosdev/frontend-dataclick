@@ -11,7 +11,7 @@
 
     <ul class="collapsible acordion">
         <li>
-            <div class="collapsible-header"><i class="material-icons">filter_drama</i>Faturas</div>
+            <div class="collapsible-header"><i class="material-icons">payment</i>Faturas</div>
             <div class="collapsible-body">
                 <div class="box-fatura" v-for="fatura in faturas" :key="fatura">
                     <div class="fatura z-depth-2">
@@ -82,7 +82,7 @@ export default {
             let elem = document.getElementById('modal');
             let instance = M.Modal.getInstance(elem, {dismissible: true});
             instance.open()
-            
+
             this.$emit('pagarFatura')
         }
     },
