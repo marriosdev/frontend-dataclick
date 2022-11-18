@@ -1,14 +1,20 @@
 <template>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+        <h5>Pagamento da fatura</h5>
+        <p>{{ mensagemResposta }}</p>
+        </div>
+        <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Fechar</a>
+        </div>
+    </div>
+
     <ul class="collapsible acordion">
         <li>
             <div class="collapsible-header"><i class="material-icons">filter_drama</i>Faturas</div>
             <div class="collapsible-body">
                 <div class="box-fatura" v-for="fatura in faturas" :key="fatura">
                     <div class="fatura z-depth-2">
-                        <span class="item" v-if="erroPagamento">
-                            <Alerta :tipo="'erro'" :mensagem="mensagemResposta" />
-                        </span>
-                        <br>
                         <span class="item">
                            <strong>Número: </strong>{{fatura.id}}
                         </span>
@@ -22,21 +28,20 @@
                         </span>
                         <br>
                         <span class="item" v-if="fatura.status != 'PAGO'">
-                            <a class="waves-effect waves-light btn-small" @click="pagar(fatura.id)"><i class="material-icons left">payment</i>Pagar</a>
+                            <a class="waves-effect waves-light btn-small"  @click="pagar(fatura.id)"><i class="material-icons left">payment</i>Pagar</a>
                         </span>
                     </div>
                 </div>
             </div>
         </li>
     </ul>
-    <!-- Modal Structure -->
-    <div id="modal1" class="modal">
+    <div id="modal" class="modal">
         <div class="modal-content">
-        <h4>Modal Header</h4>
-        <p>A bunch of text</p>
+        <h5>Pagamento da fatura</h5>
+        <p>{{ mensagemResposta }}</p>
         </div>
         <div class="modal-footer">
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Fechar</a>
         </div>
     </div>
 </template>
@@ -49,7 +54,11 @@ export default {
     name: 'TabelaFatura',
     props: {
         faturas: '',
+        onPagarFatura: ''
     },
+    emits: [
+        'onPagarFatura'
+    ],
     data() {
         return {
             erroPagamento: false,
@@ -63,22 +72,18 @@ export default {
     methods: {
         async pagar(id) {
             this.api.post(`api/invoice/pay/${id}`)
-                .then(response => {
-                    this.sucessoExclusao = true
-                    this.mensagemResposta = response.response.data
-                    }
-                )
-                .catch(erro => {
-                    this.erroPagamento = true
-
-                    this.mensagemResposta = erro.response
-                })
-
-                document.addEventListener('DOMContentLoaded', function() {
-                let elems = document.querySelectorAll('.modal');
-                let instances = M.Modal.init(elems, options);
-                instances.open()
-            });
+            .then(response => {
+                this.mensagemResposta = response.data[0]
+            })
+            .catch(error => {
+                this.mensagemResposta = error.response.data.errors.errors
+            })
+        
+            let elem = document.getElementById('modal');
+            let instance = M.Modal.getInstance(elem, {dismissible: true});
+            instance.open()
+            
+            this.$emit('pagarFatura')
         }
     },
 

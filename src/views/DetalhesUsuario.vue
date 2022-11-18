@@ -46,7 +46,6 @@
                         this.quantidade_assinaturas = usuario.data[1].signatures.length
                         this.criado_em = usuario.data[0].created_at.split("T")[0]
                         this.assinaturas = usuario.data[1].signatures
-                        console.log(this.assinaturas)
                     }
                 )
             }

@@ -15,7 +15,7 @@
                     <span>
                        <strong> Data de assinatura: </strong>{{assinatura.created_at.split("T")[0] }}
                     </span>
-                    <TabelaFatura :faturas="faturas" />
+                    <TabelaFatura :faturas="faturas" :onPagarFatura="buscarFaturas" />
                 </div>
             </div>
         </li>
@@ -42,6 +42,7 @@
         },
 
         methods: {
+
             async buscarFaturas() {
                 this.api.get(`api/signature/${this.assinatura.id}`).then(response => {
                     this.faturas = response.data[1].invoices
