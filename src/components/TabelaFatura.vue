@@ -42,6 +42,8 @@ export default {
     ],
     data() {
         return {
+            erroPagamento: false,
+            mensagemResposta: ''
         }
     },
     components: {

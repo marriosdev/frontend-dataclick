@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <MenuDetalhes :pagina="'club'" :paginaAtras="'clubes'" />
+        <MenuDetalhes :pagina="'club'" :paginaAtras="'clubes'" :paginaEdicao="`editarClube?id=${id}`" />
         <div class="container datalhes">
             <ItemDetalhe :titulo="'Nome'" :dados="nome" :icone="'done'"/>
             <ItemDetalhe :titulo="'Criação'" :dados="criado_em" :icone="'date_range'"/>
@@ -23,6 +23,7 @@
 
         data() {
             return {
+                id: null,
                 nome: '',
                 assinaturas: Array,
                 criado_em: '',
@@ -33,7 +34,7 @@
         methods: {
             async buscarClube() {
                 const id = new URLSearchParams(window. location. search).get("id")
-
+                this.id = id 
                 this.api.get(`api/club/${id}`).then(clube => {
                     this.nome = clube.data[0].name
                     this.criado_em = clube.data[0].created_at.split("T")[0]

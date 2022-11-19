@@ -9,14 +9,21 @@ import AdicionarUsuario from '../views/AdicionarUsuario.vue'
 import AdicionarClube from '../views/AdicionarClube.vue'
 import Assinatura from '../views/Assinatura.vue'
 import EditarUsuario from '../views/EditarUsuario.vue'
+import EditarClube from '../views/EditarClube.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
+  
   routes: [
     {
       path: '/',
       name: 'home',
       component: Home
+    },
+    {
+      path: '/detalhesClube',
+      name: 'detalhesClube',
+      component: DetalhesClube,
     },
     {
       path: '/usuarios',
@@ -27,11 +34,6 @@ const router = createRouter({
       path: '/clubes',
       name: 'clubes',
       component: Clubes
-    },
-    {
-      path: '/detalhesClube',
-      name: 'detalhesClube',
-      component: DetalhesClube,
     },
     {
       path: '/detalhesUsuario',
@@ -62,7 +64,12 @@ const router = createRouter({
       path: '/editarUsuario',
       name: 'editarUsuario',
       component: EditarUsuario
-    }
+    },
+    {
+      path: '/editarClube',
+      name: 'editarClube',
+      component: EditarClube
+    },
   ]
 })
 

@@ -2,15 +2,13 @@
     <div class="container">
         <div class="form">
             <div class="container">
-                <h5>Editar usuário</h5>
-                
+                <h5>Editar clube</h5>
+
                 <Alerta v-if="erros.name != undefined" :mensagem="erros.name[0]" :tipo="'erro'"/>
-                <Alerta v-if="erros.email != undefined" :mensagem="erros.email[0]" :tipo="'erro'"/>
                 
                 <Alerta v-if="sucesso" :tipo="'sucesso'" :mensagem="'Atualizado com sucesso!'"/>
                 
-                <Input :id="'nome'" :type="'text'" v-model="nome" :value = "nome" :label="'Nome do usuário'" />
-                <Input :id="'email'" :type="'text'" v-model="email" :value = "email" :label="'Email'"/>
+                <Input :id="'nome'" :type="'text'" v-model="nome" :value="nome" :label="'Nome do clube'" />
                 <div class="box-button">
                     <button @click="submit" class="waves-effect waves-light btn submit"><i class="material-icons right">send</i>Salvar</button>
                 </div>
@@ -24,7 +22,7 @@
     import Alerta from '../components/Alerta.vue'
 
     export default {
-        name: 'EditarUsuario',
+        name: 'EditarClube',
 
         components: {
             Input,
@@ -32,27 +30,21 @@
         },
         data() {
             return {
-                nomeAntigo: '',
-                emailAntigo: '',
+                id: null,
                 nome: '',
-                email: '',
                 erros: [],
                 sucesso: false
             }
         },
         methods: {
             async submit() {
-                const id = new URLSearchParams(window. location. search).get("id")
-                
-                this.api.patch(`api/user/${id}`, {
-                    name: (this.nome == this.nomeAntigo) ? null : this.nome,
-                    email: (this.email == this.emailAntigo) ? null : this.email
+
+                this.api.patch(`api/club/${this.id}`, {
+                    name: this.nome,
                 })
                 .then(response => {
                     this.sucesso = true
                     this.erros = []
-                    this.nomeAntigo = this.nome
-                    this.emailAntigo = this.email
                 })
                 .catch(error => {
                     this.sucesso = false
@@ -60,21 +52,19 @@
                 })
             },
 
-            async buscarUsuario() {
+            async buscarClube() {
                 const id = new URLSearchParams(window. location. search).get("id")
-
-                this.api.get(`api/user/${id}`)
-                    .then(usuario => {
-                        this.nomeAntigo = usuario.data[0].name
-                        this.emailAntigo = usuario.data[0].email
-                        this.nome = usuario.data[0].name
-                        this.email = usuario.data[0].email
+                this.id = id 
+                this.api.get(`api/club/${id}`).then(clube => {
+                    this.nome = clube.data[0].name
+                    this.criado_em = clube.data[0].created_at.split("T")[0]
+                    this.quantidade_assinaturas = clube.data[1].signatures.length
                     }
                 )
-            },
+            }
         },
         mounted() {
-            this.buscarUsuario()
+            this.buscarClube()
         }
     }
 
