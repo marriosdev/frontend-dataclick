@@ -1,14 +1,4 @@
 <template>
-    <div id="modal" class="modal">
-        <div class="modal-content">
-        <h5>Pagamento da fatura</h5>
-        <p>{{ mensagemResposta }}</p>
-        </div>
-        <div class="modal-footer">
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Fechar</a>
-        </div>
-    </div>
-
     <ul class="collapsible acordion">
         <li>
             <div class="collapsible-header"><i class="material-icons">payment</i>Faturas</div>
@@ -35,15 +25,6 @@
             </div>
         </li>
     </ul>
-    <div id="modal" class="modal">
-        <div class="modal-content">
-        <h5>Pagamento da fatura</h5>
-        <p>{{ mensagemResposta }}</p>
-        </div>
-        <div class="modal-footer">
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Fechar</a>
-        </div>
-    </div>
 </template>
 
 <script>
@@ -61,8 +42,6 @@ export default {
     ],
     data() {
         return {
-            erroPagamento: false,
-            mensagemResposta: ''
         }
     },
     components: {
@@ -73,17 +52,11 @@ export default {
         async pagar(id) {
             this.api.post(`api/invoice/pay/${id}`)
             .then(response => {
-                this.mensagemResposta = response.data[0]
+                this.$emit('pagarFatura', {mensagem: response.data[0]})
             })
             .catch(error => {
-                this.mensagemResposta = error.response.data.errors.errors
+                this.$emit('pagarFatura', {mensagem: error.response.data.errors.errors})
             })
-        
-            let elem = document.getElementById('modal');
-            let instance = M.Modal.getInstance(elem, {dismissible: true});
-            instance.open()
-
-            this.$emit('pagarFatura')
         }
     },
 

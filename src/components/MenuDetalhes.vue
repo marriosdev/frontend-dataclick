@@ -12,7 +12,14 @@
 
         <div class="box-button" v-if="!sucessoExclusao">
             <ul>
-                <li class="waves-effect waves-light btn blue button-menu" v-on:click="editar()"><i class="material-icons left">edit</i>Editar</li>
+                <router-view :to="paginaEdicao">                 
+                    <li class="waves-effect waves-light btn blue button-menu" v-on:click="editar()">
+                        <i class="material-icons left">
+                            edit
+                        </i>Editar
+                    </li>
+                </router-view>
+
                 <li class="waves-effect waves-light btn red button-menu" v-if="!botaoConfirma" v-on:click="excluir()"><i class="material-icons left">delete</i>Excluir</li>
                 <li class="waves-effect waves-light btn orange button-menu" v-on:click="excluirDefinitivo()" v-if="botaoConfirma" ><i class="material-icons left">report_problem</i>Confirmar</li>
             </ul>
@@ -22,8 +29,8 @@
             <ul>
                 <router-link :to="paginaAtras" > 
                     <li class="waves-effect waves-light btn blue button-menu">
-                        <i class="material-icons left">arrow_back</i>
                         Voltar
+                        <i class="material-icons left">arrow_back</i>
                     </li>
                 </router-link>
             </ul>
@@ -50,6 +57,7 @@
         },
         
         props: {
+            paginaEdicao: '',
             pagina: '',
             paginaAtras: ''
         },

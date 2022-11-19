@@ -1,15 +1,26 @@
 <template>
     <div class="container">
-        <MenuDetalhes :pagina="'user'" :paginaAtras="'usuarios'" />
+        <MenuDetalhes :pagina="'user'" :paginaAtras="'usuarios'" :paginaEdicao="'editarUsuario'"/>
         <div class="container datalhes">
             <ItemDetalhe :titulo="'Nome'" :dados="nome" :icone="'done'"/>
             <ItemDetalhe :titulo="'Criação'" :dados="criado_em" :icone="'date_range'"/>
             <ItemDetalhe :titulo="'Assinaturas'" :dados="quantidade_assinaturas" :icone="'assignment_ind'"/>
             <div v-for="assinatura in assinaturas" :key="assinatura">
-                <TabelaAssinatura :assinatura="assinatura" :titulo="assinatura.clubname"/>
+                <TabelaAssinatura :assinatura="assinatura" :titulo="assinatura.clubname" :onAbrirModal="abrirModal"/>
             </div>
         </div>
     </div>
+
+    <div id="modal" class="modal">
+    <div class="modal-content">
+        <h5>Pagamento da fatura</h5>
+        <p>{{ mensagemModal }}</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+    </div>
+         
 </template>
 
 <script>
@@ -28,6 +39,7 @@
 
         data() {
             return {
+                mensagemModal: '',
                 nome: '',
                 assinaturas: Array,
                 criado_em: '',
@@ -48,6 +60,13 @@
                         this.assinaturas = usuario.data[1].signatures
                     }
                 )
+            },
+
+            async abrirModal(mensagem) {
+                this.mensagemModal = mensagem
+                let elem = document.getElementById('modal');
+                let instance = M.Modal.getInstance(elem, {dismissible: true});
+                instance.open()
             }
         },
         

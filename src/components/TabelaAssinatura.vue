@@ -15,7 +15,7 @@
                     <span>
                        <strong> Data de assinatura: </strong>{{assinatura.created_at.split("T")[0] }}
                     </span>
-                    <TabelaFatura :faturas="faturas" :onPagarFatura="buscarFaturas" />
+                    <TabelaFatura :faturas="faturas" :onPagarFatura="pagamentoFatura" />
                 </div>
             </div>
         </li>
@@ -33,16 +33,23 @@
         
         data() {
             return {
-                faturas: ""
+                faturas: "",
+                mensagemPagamento: ""
             }
         },
 
         props: {
+            onAbrirModal: '',
             assinatura: '',
             titulo: ''
         },
 
         methods: {
+            async pagamentoFatura(param) {
+                this.$emit('abrirModal', param.mensagem)
+                this.buscarFaturas()
+                
+            },
 
             async buscarFaturas() {
                 this.api.get(`api/signature/${this.assinatura.id}`).then(response => {

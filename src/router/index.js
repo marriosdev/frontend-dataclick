@@ -8,6 +8,7 @@ import DetalhesUsuario from '../views/DetalhesUsuario.vue'
 import AdicionarUsuario from '../views/AdicionarUsuario.vue'
 import AdicionarClube from '../views/AdicionarClube.vue'
 import Assinatura from '../views/Assinatura.vue'
+import EditarUsuario from '../views/EditarUsuario.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -56,6 +57,11 @@ const router = createRouter({
       path: '/assinatura',
       name: 'assinatura',
       component: Assinatura
+    },
+    {
+      path: '/editarUsuario',
+      name: 'editarUsuario',
+      component: EditarUsuario
     }
   ]
 })
