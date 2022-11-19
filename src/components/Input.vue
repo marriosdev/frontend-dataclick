@@ -4,11 +4,10 @@
             :id="id" 
             :type="type" 
             class="validate" 
-            :value="modelValue"
+            :value="modelValue ? modelValue : value"
             @change="retornaValor"
         >
-        
-        <label :for="id"> {{label}}</label>
+        <label :for="id" :class="value ? 'active' :'' "> {{label}}</label>
     </div>
 </template>
 
@@ -20,11 +19,12 @@ export default {
         type: '',
         label: '',
         id: '',
+        value: null
     },
 
     data() {
         return {
-            modelValue: ''
+            modelValue: null
         }
     },
 

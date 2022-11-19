@@ -2,15 +2,15 @@
     <div class="container">
         <div class="form">
             <div class="container">
-                <h5>Adicionar usuário</h5>
+                <h5>Editar usuário</h5>
                 
                 <Alerta v-if="erros.name != undefined" :mensagem="erros.name[0]" :tipo="'erro'"/>
                 <Alerta v-if="erros.email != undefined" :mensagem="erros.email[0]" :tipo="'erro'"/>
                 
-                <Alerta v-if="sucesso" :tipo="'sucesso'" :mensagem="'Adicionado com sucesso!'"/>
+                <Alerta v-if="sucesso" :tipo="'sucesso'" :mensagem="'Atualizado com sucesso!'"/>
                 
                 <Input :id="'nome'" :type="'text'" v-model="nome" :value = "nome" :label="'Nome do usuário'" />
-                <Input :id="'email'" :type="'text'" v-model="email" :value = "nome" :label="'Email'"/>
+                <Input :id="'email'" :type="'text'" v-model="email" :value = "email" :label="'Email'"/>
                 <div class="box-button">
                     <button @click="submit" class="waves-effect waves-light btn submit"><i class="material-icons right">send</i>Salvar</button>
                 </div>
@@ -40,8 +40,9 @@
         },
         methods: {
             async submit() {
+                const id = new URLSearchParams(window. location. search).get("id")
 
-                this.api.post('api/user', {
+                this.api.patch(`api/user/${id}`, {
                     name: this.nome,
                     email: this.email
                 })
@@ -65,6 +66,9 @@
                     }
                 )
             },
+        },
+        mounted() {
+            this.buscarUsuario()
         }
     }
 

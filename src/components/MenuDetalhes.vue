@@ -12,13 +12,13 @@
 
         <div class="box-button" v-if="!sucessoExclusao">
             <ul>
-                <router-view :to="paginaEdicao">                 
+                <router-link :to="paginaEdicao">                 
                     <li class="waves-effect waves-light btn blue button-menu" v-on:click="editar()">
                         <i class="material-icons left">
                             edit
                         </i>Editar
                     </li>
-                </router-view>
+                </router-link>
 
                 <li class="waves-effect waves-light btn red button-menu" v-if="!botaoConfirma" v-on:click="excluir()"><i class="material-icons left">delete</i>Excluir</li>
                 <li class="waves-effect waves-light btn orange button-menu" v-on:click="excluirDefinitivo()" v-if="botaoConfirma" ><i class="material-icons left">report_problem</i>Confirmar</li>

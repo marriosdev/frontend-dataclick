@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <MenuDetalhes :pagina="'user'" :paginaAtras="'usuarios'" :paginaEdicao="'editarUsuario'"/>
+        <MenuDetalhes :pagina="'user'" :paginaAtras="'usuarios'" :paginaEdicao="`editarUsuario?id=${id}`"/>
         <div class="container datalhes">
             <ItemDetalhe :titulo="'Nome'" :dados="nome" :icone="'done'"/>
             <ItemDetalhe :titulo="'Criação'" :dados="criado_em" :icone="'date_range'"/>
@@ -39,6 +39,7 @@
 
         data() {
             return {
+                id: null,
                 mensagemModal: '',
                 nome: '',
                 assinaturas: Array,
@@ -51,7 +52,7 @@
         methods: {
             async buscarUsuario() {
                 const id = new URLSearchParams(window. location. search).get("id")
-
+                this.id = id
                 this.api.get(`api/user/${id}`)
                     .then(usuario => {
                         this.nome = usuario.data[0].name
