@@ -54,10 +54,10 @@ export default {
         async pagar(id) {
             this.api.post(`api/invoice/pay/${id}`)
             .then(response => {
-                this.$emit('pagarFatura', {mensagem: response.data[0]})
+                this.$emit('pagarFatura', {titulo: "Pagamento da fatura", mensagem: response.data[0]})
             })
             .catch(error => {
-                this.$emit('pagarFatura', {mensagem: error.response.data.errors.errors})
+                this.$emit('pagarFatura', {titulo: "Pagamento da fatura", mensagem: error.response.data.errors.errors})
             })
         }
     },

@@ -17,7 +17,7 @@
                     </span>
                     <br>
                     <span>
-                       <strong> Data de assinatura: </strong>{{assinatura.created_at.split("T")[0] }}
+                       <strong> Data de assinatura: </strong>{{ assinatura.created_at.split("T")[0] }}
                     </span>
                     <br>
                     <span>
@@ -58,7 +58,7 @@
 
         methods: {
             async pagamentoFatura(param) {
-                this.$emit('abrirModal', param.mensagem)
+                this.$emit('abrirModal', {titulo: 'Pagamento da fatura', mensagem: param.mensagem})
                 this.buscarFaturas()
                 
             },
@@ -75,9 +75,14 @@
             },
             
             async cancelarAssinatura() {
-                this.api.delete(`api/signature/${this.assinatura.id}`).then(response => {
-                    this.faturas = response.data[1].invoices
-                })
+                this.api.delete(`api/signature/${this.assinatura.id}`)
+                    .then(response => {
+                        this.$emit('abrirModal', {titulo: 'Cancelamento da assinatura', mensagem: response.data})
+                    })
+                    .catch(error => {
+                        this.$emit('abrirModal', {titulo: 'Cancelamento da assinatura', mensagem: "Ocorreu um erro ao cancelar esta assinatura"})
+
+                    })
                 this.$emit('atualizar')
             }
         },

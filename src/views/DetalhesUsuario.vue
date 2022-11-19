@@ -8,15 +8,15 @@
             <ItemDetalhe :titulo="'Assinaturas'" :dados="quantidade_assinaturas" :icone="'assignment_ind'"/>
 
             <div v-for="assinatura in assinaturas" :key="assinatura">
-                <TabelaAssinatura :assinatura="assinatura" :titulo="assinatura.clubname" :onAbrirModal="abrirModal" :onAtualizar="buscarUsuario"/>
+                <TabelaAssinatura :assinatura="assinatura" :titulo="assinatura.clubname" :onAbrirModal="abrirModal" :onAtualizar="atualizar"/>
             </div>
         </div>
     </div>
 
     <div id="modal" class="modal">
     <div class="modal-content">
-        <h5>Pagamento da fatura</h5>
-        <p>{{ mensagemModal }}</p>
+        <h5>{{ mensagemModal.titulo }}</h5>
+        <p>{{ mensagemModal.mensagem }}</p>
     </div>
     <div class="modal-footer">
         <a href="#!" class="modal-close waves-effect waves-green btn-flat">Fechar</a>
@@ -72,6 +72,12 @@
                 let elem = document.getElementById('modal');
                 let instance = M.Modal.getInstance(elem, {dismissible: true});
                 instance.open()
+            },
+
+
+            async atualizar() {
+                this.buscarUsuario()
+                this.buscarUsuario()
             }
         },
         
