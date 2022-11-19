@@ -77,11 +77,6 @@
             async cancelarAssinatura() {
                 this.api.delete(`api/signature/${this.assinatura.id}`)
                     .then(response => {
-                        this.$emit('abrirModal', {titulo: 'Cancelamento da assinatura', mensagem: response.data})
-                    })
-                    .catch(error => {
-                        this.$emit('abrirModal', {titulo: 'Cancelamento da assinatura', mensagem: "Ocorreu um erro ao cancelar esta assinatura"})
-
                     })
                 this.$emit('atualizar')
             }
