@@ -6,7 +6,7 @@
                 <div class="box-fatura" v-for="fatura in faturas" :key="fatura">
                     <div class="fatura z-depth-2">
                         <span class="item">
-                           <strong>Número: </strong>{{fatura.id}}
+                           <strong>Nº: </strong>{{fatura.id}}
                         </span>
                         <br>
                         <span class="item">

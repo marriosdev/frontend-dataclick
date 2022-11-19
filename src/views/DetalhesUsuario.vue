@@ -5,10 +5,10 @@
             <ItemDetalhe :titulo="'Nome'" :dados="nome" :icone="'person'"/>
             <ItemDetalhe :titulo="'E-mail'" :dados="email" :icone="'email'"/>
             <ItemDetalhe :titulo="'Criação'" :dados="criado_em" :icone="'date_range'"/>
-            <ItemDetalhe :titulo="'Assinaturas'" :dados="email" :icone="'assignment_ind'"/>
+            <ItemDetalhe :titulo="'Assinaturas'" :dados="quantidade_assinaturas" :icone="'assignment_ind'"/>
 
             <div v-for="assinatura in assinaturas" :key="assinatura">
-                <TabelaAssinatura :assinatura="assinatura" :titulo="assinatura.clubname" :onAbrirModal="abrirModal"/>
+                <TabelaAssinatura :assinatura="assinatura" :titulo="assinatura.clubname" :onAbrirModal="abrirModal" :onAtualizar="buscarUsuario"/>
             </div>
         </div>
     </div>
