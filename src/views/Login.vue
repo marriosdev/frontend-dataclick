@@ -12,9 +12,10 @@
         v-model="senha"
         :label="'Senha'"
       />
-      <a class="waves-effect waves-light btn-small" @click="entrar"
-        ><i class="material-icons right">send</i>Entrar</a
-      >
+      <a class="waves-effect waves-light btn-small" @click="entrar"><i class="material-icons right">send</i>Entrar</a>
+      <div>
+        <router-link :to="'register'">Criar uma conta</router-link>
+      </div>
     </div>
   </div>
 </template>

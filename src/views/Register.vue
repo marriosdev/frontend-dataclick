@@ -13,6 +13,9 @@
         <Input :id="'email'" :type="'text'" v-model="email" :label="'E-mail'" />
         <Input :id="'password'" :type="'password'" v-model="senha" :label="'Senha'" />
         <a class="waves-effect waves-light btn-small" @click="salvar"><i class="material-icons right">send</i>Registrar</a>
+        <div>
+            <router-link :to="'login'">Fazer login</router-link>
+        </div>
     </div>
   </div>
 </template>
