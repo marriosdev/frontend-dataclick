@@ -14,3 +14,19 @@ app.use(router)
 app.mount('#app')
 
 app.config.globalProperties.api = api
+
+router.beforeEach((to, from, next) => {
+    if (localStorage.getItem('isLogged') != true) {
+        if (to.name != "login" && to.name != "register") {
+            api.get('api/me')
+                .then(response => {
+                    localStorage.setItem('isLogged', true)
+                }).catch(error => {
+                    localStorage.setItem('isLogged', false)
+                    router.push('login')
+                })
+        }
+    }
+    next()
+    return
+})

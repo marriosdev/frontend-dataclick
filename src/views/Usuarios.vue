@@ -1,40 +1,39 @@
 <template>
-    <div class="container">
-        <h4>Clubes</h4>
-        <BotaoCriar :nomePagina="'adicionarUsuario'"/>
-        <Tabela  :pagina="'detalhesUsuario'" :itens="usuarios"/>
-    </div>
+  <div class="container">
+    <h4>Clubes</h4>
+    <BotaoCriar :nomePagina="'adicionarUsuario'" />
+    <Tabela :pagina="'detalhesUsuario'" :itens="usuarios" />
+  </div>
 </template>
 
 <script>
-
-import BotaoCriar from '../components/BotaoCriar.vue'
-import Tabela from '../components/Tabela.vue'
+import BotaoCriar from "../components/BotaoCriar.vue";
+import Tabela from "../components/Tabela.vue";
 
 export default {
-    name: 'Usuarios',
-    
-    components: {
-        BotaoCriar,
-        Tabela
-    },
+  name: "Usuarios",
 
-    data() {
-        return {
-            usuarios: Array
-        }
-    },
+  components: {
+    BotaoCriar,
+    Tabela,
+  },
 
-    methods: {
-        async buscarUsuarios() {
-            this.api.get('api/user').then(usuarios => {
-                this.usuarios = usuarios.data
-            })
-        },
-    },
+  data() {
+    return {
+      usuarios: Array,
+    };
+  },
 
-    mounted() {
-        this.buscarUsuarios()
-    }
-}
+  methods: {
+    async buscarUsuarios() {
+      this.api.get("api/user").then((usuarios) => {
+        this.usuarios = usuarios.data;
+      });
+    },
+  },
+
+  mounted() {
+    this.buscarUsuarios();
+  },
+};
 </script>

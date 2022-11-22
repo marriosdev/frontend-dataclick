@@ -1,17 +1,14 @@
 <template>
-  <div class="home">
-  </div>
+  <div class="home">asdasd</div>
 </template>
 
 <script>
+export default {
+  name: "Home",
+  components: {},
 
-  export default {
-    name: 'Home',
-    components: {
-    },
-
-    async mounted() {
-        M.AutoInit()
-    }
-  }
+  async mounted() {
+    M.AutoInit();
+  },
+};
 </script>

@@ -1,40 +1,39 @@
 <template>
-    <div class="container">
-        <h4>Clubes</h4>
-        <BotaoCriar :nomePagina="'adicionarClube'"/>
-        <Tabela  :pagina="'detalhesClube'" :itens="clubes"/>
-    </div>
+  <div class="container">
+    <h4>Clubes</h4>
+    <BotaoCriar :nomePagina="'adicionarClube'" />
+    <Tabela :pagina="'detalhesClube'" :itens="clubes" />
+  </div>
 </template>
 
 <script>
-
-import BotaoCriar from '../components/BotaoCriar.vue'
-import Tabela from '../components/Tabela.vue'
+import BotaoCriar from "../components/BotaoCriar.vue";
+import Tabela from "../components/Tabela.vue";
 
 export default {
-    name: 'Clubes',
-    
-    components: {
-        BotaoCriar,
-        Tabela
-    },
+  name: "Clubes",
 
-    data() {
-        return {
-            clubes: Array
-        }
-    },
+  components: {
+    BotaoCriar,
+    Tabela,
+  },
 
-    methods: {
-        async buscarClubes() {
-            this.api.get('api/club').then(clubes => {
-                this.clubes = clubes.data
-            })
-        },
-    },
+  data() {
+    return {
+      clubes: Array,
+    };
+  },
 
-    mounted() {
-        this.buscarClubes()
-    }
-}
+  methods: {
+    async buscarClubes() {
+      this.api.get("api/club").then((clubes) => {
+        this.clubes = clubes.data;
+      });
+    },
+  },
+
+  mounted() {
+    this.buscarClubes();
+  },
+};
 </script>
