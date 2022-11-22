@@ -8,7 +8,7 @@
             <ItemDetalhe :titulo="'Assinaturas'" :dados="quantidade_assinaturas" :icone="'assignment_ind'"/>
 
             <div v-for="assinatura in assinaturas" :key="assinatura">
-                <TabelaAssinatura :assinatura="assinatura" :titulo="assinatura.clubname" :onAbrirModal="abrirModal" :onAtualizar="atualizar"/>
+                <TabelaAssinatura :assinatura="assinatura" :titulo="assinatura.club" :onAbrirModal="abrirModal" :onAtualizar="atualizar"/>
             </div>
         </div>
     </div>

@@ -1,7 +1,7 @@
 <template>
     <ul class="collapsible acordion">
         <li>
-            <div class="collapsible-header"><i class="material-icons">assignment_ind</i>{{titulo}}</div>
+            <div class="collapsible-header"><i class="material-icons">assignment_ind</i>{{ assinatura.club }}</div>
             <div class="collapsible-body">
                 <div>
                     <span>
@@ -9,11 +9,11 @@
                     </span>
                     <br>
                     <span>
-                       <strong> Assinatura: </strong>{{assinatura.clubname}}
+                       <strong> Assinatura: </strong>{{assinatura.club}}
                     </span>
                     <br>
                     <span>
-                       <strong> Status: </strong>{{assinatura.status_signature}}
+                       <strong> Status: </strong>{{assinatura.status}}
                     </span>
                     <br>
                     <span>
