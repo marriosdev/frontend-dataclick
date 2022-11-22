@@ -4,55 +4,65 @@
         <div class="header">
             <h5>Cadastro</h5>
         </div>
+        <Alerta :tipo="'erro'" :mensagem="mensagemErro.name[0]" v-if="mensagemErro.name != undefined" />  
+        <Alerta :tipo="'erro'" :mensagem="mensagemErro.email[0]" v-if="mensagemErro.email != undefined" />  
+        <Alerta :tipo="'erro'" :mensagem="mensagemErro.password[0]" v-if="mensagemErro.password != undefined" />
+        <Alerta :tipo="'sucesso'" :mensagem="'Cadastrado com sucesso! Vá para a página de login'" v-if="sucesso" />
+        <router-link :to="'login'" v-if="sucesso"><a class="waves-effect waves-light btn-small"><i class="material-icons right">keyboard_arrow_right</i>Login</a></router-link>
+        
+
         <Input :id="'nome'" :type="'text'" v-model="nome" :label="'Nome'" />
         <Input :id="'email'" :type="'text'" v-model="email" :label="'E-mail'" />
         <Input :id="'password'" :type="'text'" v-model="senha" :label="'Senha'" />
-        <a class="waves-effect waves-light btn-small"><i class="material-icons right">send</i>button</a>
+        <a class="waves-effect waves-light btn-small" @click="salvar"><i class="material-icons right">send</i>Registrar</a>
     </div>
   </div>
 </template>
 
 <script>
-import Input from '../components/Input.vue';
 
-export default {
-    name: 'Register',
+    import Input from '../components/Input.vue';
+    import Alerta from '../components/Alerta.vue'
+    export default {
 
-    components: {
-        Input        
-    },
+        name: 'Login',
+        
+        components: {
+            Input,
+            Alerta   
+        },
 
-    data() {
-        return {
-            nome: '',
-            email: '',
-            senha: ''
+        data() {
+            return {
+                mensagemErro: "",
+                sucesso: false,
+                email: '',
+                senha: '',
+                nome: ''
+            }
+        },
+        mounted() {
+            M.AutoInit()
+        },
+        methods: {
+            async salvar() {
+
+                this.api.post('api/register', {
+                    name: this.nome,
+                    email: this.email,
+                    password: this.senha
+                })
+                .then(response => {
+                    this.sucesso = true
+                    this.mensagemErro = []
+                })
+                .catch(error => {
+                    this.sucesso = false
+                    this.mensagemErro = error.response.data.errors
+                })
+            }
         }
-    },
-
-    methods: {
-        async entrar() {
-            this.api.post('api/signature', {
-                name: this.nome,
-                email: this.email,
-                password: this.senha
-            })
-            .then(response => {
-                this.sucesso = true
-                this.erros = []
-            })
-            .catch(error => {
-                this.sucesso = false
-                this.mensagemErro = error.response.data.errors
-            })
-        }
-    },
-
-    mounted() {
-        M.AutoInit()
     }
-}
-
 </script>
 
 <style scoped>
@@ -67,3 +77,4 @@ export default {
         }
     }
 </style>
+

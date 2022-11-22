@@ -7,7 +7,7 @@
         <Alerta :tipo="'erro'" :mensagem="mensagemErro" v-if="!sucesso" />  
         <Input :id="'email'" :type="'text'" v-model="email" :label="'E-mail'" />
         <Input :id="'password'" :type="'text'" v-model="senha" :label="'Senha'" />
-        <a class="waves-effect waves-light btn-small" @click="entrar"><i class="material-icons right">send</i>button</a>
+        <a class="waves-effect waves-light btn-small" @click="entrar"><i class="material-icons right">send</i>Entrar</a>
     </div>
   </div>
 </template>
@@ -15,12 +15,14 @@
 <script>
 
     import Input from '../components/Input.vue';
+    import Alerta from '../components/Alerta.vue'
     export default {
 
         name: 'Login',
         
         components: {
-            Input        
+            Input,
+            Alerta   
         },
 
         data() {
@@ -47,7 +49,7 @@
                 })
                 .catch(error => {
                     this.sucesso = false
-                    this.mensagemErro = error.response.data.errors
+                    this.mensagemErro = error.response.data.message
                 })
             }
         }
