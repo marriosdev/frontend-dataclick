@@ -6,8 +6,16 @@
       :paginaEdicao="`editarUsuario?id=${id}`"
     />
     <div class="container datalhes">
-      <ItemDetalhe :titulo="'Nome'" :dados="nome" :icone="'person'" />
-      <ItemDetalhe :titulo="'E-mail'" :dados="email" :icone="'email'" />
+      <ItemDetalhe 
+        :titulo="'Nome'" 
+        :dados="nome" 
+        :icone="'person'" 
+      />
+      <ItemDetalhe 
+        :titulo="'E-mail'" 
+        :dados="email" 
+        :icone="'email'" 
+      />
       <ItemDetalhe
         :titulo="'Criação'"
         :dados="criado_em"
@@ -19,7 +27,7 @@
         :icone="'assignment_ind'"
       />
 
-      <div v-for="assinatura in assinaturas" :key="assinatura">
+      <div v-for="assinatura in assinaturas" :key="assinatura.id">
         <TabelaAssinatura
           :assinatura="assinatura"
           :titulo="assinatura.club"
@@ -77,9 +85,9 @@ export default {
       this.api.get(`api/user/${id}`).then((usuario) => {
         this.nome = usuario.data[0].name;
         this.email = usuario.data[0].email;
-        this.quantidade_assinaturas = usuario.data[1].signatures.length;
         this.criado_em = usuario.data[0].created_at.split("T")[0];
         this.assinaturas = usuario.data[1].signatures;
+        this.quantidade_assinaturas = usuario.data[1].signatures.length;
       });
     },
 

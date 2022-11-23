@@ -6,31 +6,36 @@
       </div>
       <div class="collapsible-body">
         <div>
-          <span> <strong> Nº: </strong>{{ assinatura.id }} </span>
-          <br />
-          <span> <strong> Assinatura: </strong>{{ assinatura.club }} </span>
-          <br />
-          <span> <strong> Status: </strong>{{ assinatura.status }} </span>
-          <br />
-          <span>
-            <strong> Data de assinatura: </strong
-            >{{ assinatura.created_at.split("T")[0] }}
+          <span> 
+            <strong> Nº: </strong>{{ assinatura.id }} 
           </span>
           <br />
+          <span> 
+            <strong> Assinatura: </strong>{{ assinatura.club }} 
+          </span>
+          <br />
+          <span> 
+            <strong> Status: </strong>{{ assinatura.status }} 
+            </span>
+          <br />
           <span>
+            <strong> Data de assinatura: </strong>{{ assinatura.created_at.split("T")[0] }}
+          </span>
+          <br />
+          <span class="btn-cancelar">
             <a
               class="waves-effect waves-light btn-small red"
               v-if="!confirmarCancelarAssinatura"
               @click="confirmarCancelamento"
-              ><i class="material-icons left">cancel</i> Cancelar assinatura</a
-            >
+              ><i class="material-icons left">cancel</i> Cancelar assinatura</a>
             <a
               class="waves-effect waves-light btn-small orange"
               v-if="confirmarCancelarAssinatura"
               @click="cancelarAssinatura"
-              ><i class="material-icons left">cancel</i> Confirmar
-              cancelamento</a
-            >
+              >
+              <i class="material-icons left">cancel</i> 
+              Confirmar
+              cancelamento</a>
           </span>
 
           <TabelaFatura :faturas="faturas" :onPagarFatura="pagamentoFatura" />
@@ -96,3 +101,6 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+</style>

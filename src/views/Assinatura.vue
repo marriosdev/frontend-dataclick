@@ -3,7 +3,7 @@
     <div class="form">
       <div class="container">
         <h5>Nova assinatura</h5>
-        <p>Criei uma nova assinatura entre usuário e time</p>
+        <p>Crie uma nova assinatura entre usuário e time</p>
         <Alerta :tipo="'erro'" :mensagem="mensagemErro" v-if="!sucesso" />
         <Alerta
           :tipo="'sucesso'"
